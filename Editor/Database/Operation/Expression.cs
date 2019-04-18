@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 using System.Xml;
 using Unity.MemoryProfiler.Editor.Debuging;
 
@@ -1233,16 +1234,32 @@ namespace Unity.MemoryProfiler.Editor.Database.Operation
     internal class SubStringMatcher : TypedMatcher<string>
     {
         public string value;
+        public Regex regex;
+        public SubStringMatcher(string inValue)
+        {
+            value = inValue;
+            try
+            {
+                regex = new Regex(value);
+            }
+            catch (Exception ex)
+            {
+                UnityEngine.Debug.Log(ex);
+                regex = null;
+            }
+        }
 
         public override bool Match(string a)
         {
-            return a.Contains(value);
+            UnityEngine.Debug.Log("Match string:" + a);
+            return regex != null ? regex.IsMatch(a) : false;//a.Contains(value);
         }
 
         public override bool Match(Expression exp, long row)
         {
             var v = exp.GetValueString(row);
-            return v.Contains(value);
+            UnityEngine.Debug.Log("Match Expression:" + v);
+            return regex != null ? regex.IsMatch(v) : false;//v.Contains(value);
         }
 
         public override long[] GetMatchIndex(Expression exp, ArrayRange indices)
@@ -1258,7 +1275,7 @@ namespace Unity.MemoryProfiler.Editor.Database.Operation
                 {
                     long ii = indices[i];
                     var v = exp.GetValueString(ii);
-                    if (v.ToLower().Contains(value2))
+                    if (regex != null ? regex.IsMatch(v) : false)//v.ToLower().Contains(value2))
                     {
                         o[lastO] = ii;
                         ++lastO;

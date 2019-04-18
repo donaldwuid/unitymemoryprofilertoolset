@@ -30,10 +30,11 @@ namespace Unity.MemoryProfiler.Editor.Database.Operation.Filter
             }
             var t = metaCol.Type;
             Matcher m;
+            Debug.Log("metaCol.Type=" + metaCol.Type);
             if (t == typeof(string))
             {
-                var ssm = new SubStringMatcher();
-                ssm.value = m_matchString;
+                var ssm = new SubStringMatcher(m_matchString);
+                //ssm.value = m_matchString;
                 m = ssm;
             }
             else
@@ -204,7 +205,7 @@ namespace Unity.MemoryProfiler.Editor.Database.Operation.Filter
             var t = metaCol.Type;
             if (t == typeof(string))
             {
-                label = "'" + metaCol.DisplayName + "' contains:";
+                label = "'" + metaCol.DisplayName + "' regex matches:";
             }
             else
             {
@@ -266,6 +267,7 @@ namespace Unity.MemoryProfiler.Editor.Database.Operation.Filter
                 if (m_MatchString != newMatchString)
                 {
                     m_MatchString = newMatchString;
+                    Debug.Log(m_MatchString);
                     dirty = true;
                 }
             }

@@ -30,6 +30,14 @@ using Unity.MemoryProfiler.Editor.EnumerationUtilities;
 namespace Unity.MemoryProfiler.Editor
 {
     using UnityMemoryProfiler = UnityEngine.Profiling.Memory.Experimental.MemoryProfiler;
+
+    public class MemoryProfilerCommon
+    {
+        const string k_BasePackageDefaultPath = "Packages/";
+        const string k_BasePackageInProjectPath = "Assets/StandardAssets/";
+
+        public const string k_BasePackagePath = k_BasePackageInProjectPath;
+    }
     internal class MemoryProfilerWindow : EditorWindow, UI.IViewPaneEventListener
     {
         static class Content
@@ -80,12 +88,13 @@ namespace Unity.MemoryProfiler.Editor
         const string k_ViewFileExtension = "xml";
         const string k_RawCategoryName = "Raw";
         const string k_DiffRawCategoryName = "Diff Raw";
-        
-        const string k_WindowUxmlPath = "Packages/com.unity.memoryprofiler/Package Resources/UXML/MemoryProfilerWindow.uxml";
-        const string k_SnapshotListItemUxmlPath = "Packages/com.unity.memoryprofiler/Package Resources/UXML/SnapshotListItem.uxml";
-        const string k_WindowCommonStyleSheetPath = "Packages/com.unity.memoryprofiler/Package Resources/StyleSheets/MemoryProfilerWindow_style.uss";
-        const string k_WindowLightStyleSheetPath = "Packages/com.unity.memoryprofiler/Package Resources/StyleSheets/MemoryProfilerWindow_style_light.uss";
-        const string k_WindowDarkStyleSheetPath = "Packages/com.unity.memoryprofiler/Package Resources/StyleSheets/MemoryProfilerWindow_style_dark.uss";
+
+
+        const string k_WindowUxmlPath = MemoryProfilerCommon.k_BasePackagePath + "com.unity.memoryprofiler/Package Resources/UXML/MemoryProfilerWindow.uxml";
+        const string k_SnapshotListItemUxmlPath = MemoryProfilerCommon.k_BasePackagePath + "com.unity.memoryprofiler/Package Resources/UXML/SnapshotListItem.uxml";
+        const string k_WindowCommonStyleSheetPath = MemoryProfilerCommon.k_BasePackagePath + "com.unity.memoryprofiler/Package Resources/StyleSheets/MemoryProfilerWindow_style.uss";
+        const string k_WindowLightStyleSheetPath = MemoryProfilerCommon.k_BasePackagePath + "com.unity.memoryprofiler/Package Resources/StyleSheets/MemoryProfilerWindow_style_light.uss";
+        const string k_WindowDarkStyleSheetPath = MemoryProfilerCommon.k_BasePackagePath + "com.unity.memoryprofiler/Package Resources/StyleSheets/MemoryProfilerWindow_style_dark.uss";
         const string k_SnapshotButtonClassName = "snapshotButton";
         const string k_SnapshotMetaDataTextClassName = "snapshotMetaDataText";
         const string k_EvenRowStyleClass = "evenRow";

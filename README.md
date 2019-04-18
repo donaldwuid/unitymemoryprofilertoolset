@@ -2,15 +2,15 @@
 ## First things first
 If you are using Unity2018,
 - Copy memoryprofilerv2 into your Unity2018 project. Empty project is also fine.
-- That's it! Capture and profile!
+- That's it! Connect your device, capture and profile!
 
 
 If you are using Unity5 or Unity2017,
 - Copy memoryprofilerv2 into your Unity2018 project. Empty project is also fine.
 - You should copy BitbucketMemoryProfiler into your Unity5/2017 project as well. Empty project is also fine.
 - Open BitbucketMemoryProfiler panel in your Unity5/2017 project, in order to save your time, make sure **Enable Crawl** toggle off!
-- Capture and save your device memory snapshot **.memsnap3** file
-- Then use the memoryprofilerv2 to import your memory snapshot.
+- Connect your device, capture and save your device memory snapshot **.memsnap3** file
+- Then, in your Unity2018 project, use the memoryprofilerv2 to import your memory snapshot.
 
 This memoryprofilerv2 and BitbucketMemoryProfiler is modified to fit this workflow, and for some other improvements.
 

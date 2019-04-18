@@ -1,6 +1,8 @@
 
 ## First things first
+
 com.unity.memoryprofiler: new il2cpp-based memoryprofile v2 for Unity 2018.
+
 BitbucketMemoryProfiler: old il2cpp-based memoryprofile for Unity5/2017.
 
 

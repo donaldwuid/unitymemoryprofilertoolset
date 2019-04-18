@@ -1,9 +1,9 @@
 
 ## First things first
 
-com.unity.memoryprofiler: new il2cpp-based memoryprofile v2 for Unity 2018.
+com.unity.memoryprofiler: new il2cpp-based memoryprofiler v2 for Unity 2018.
 
-BitbucketMemoryProfiler: old il2cpp-based memoryprofile for Unity5/2017.
+BitbucketMemoryProfiler: old il2cpp-based memoryprofiler for Unity5/2017.
 
 
 If you are using Unity2018,
@@ -14,7 +14,7 @@ If you are using Unity2018,
 If you are using Unity5 or Unity2017,
 - Copy com.unity.memoryprofiler into your Unity2018 project. Empty project is also fine.
 - You should copy BitbucketMemoryProfiler into your Unity5/2017 project as well. Empty project is also fine.
-- Open BitbucketMemoryProfiler panel in your Unity5/2017 project, in order to save your time, make sure **Enable Crawl** toggle off!
+- Open BitbucketMemoryProfiler panel in your Unity5/2017 project, in order to save your time, make sure **Enable Crawl** to be toggle off!
 - Connect your device, capture and save your device memory snapshot **.memsnap3** file
 - Then, in your Unity2018 project, use the com.unity.memoryprofiler to import your memory snapshot.
 

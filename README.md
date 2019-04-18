@@ -33,7 +33,7 @@ This com.unity.memoryprofiler and BitbucketMemoryProfiler is modified to fit thi
 它们有自己的优缺点，分析如下。
 
 ### XCode Memory Graph + Malloc Stack
-XCode Memory Graph<sup>[1]</sup>在开启Malloc Stack选项的情况下，其抓取到的memgraph文件可以提供非常详细的操作系统Native级别、Metal图形驱动级别的内存分配信息。
+XCode Memory Graph<sup>[1]</sup>在开启Malloc Stack选项的情况下，抓取到的memgraph文件，配合`vmmap`、`malloc_history`等命令，可以提供非常详细的操作系统Native级别、Metal图形驱动级别的内存分配信息。
 下面是抓取结果示例，
 
 |内存类型|内存大小（Dirty Size + Swapped Size）|

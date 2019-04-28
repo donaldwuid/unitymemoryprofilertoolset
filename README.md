@@ -8,11 +8,13 @@ BitbucketMemoryProfiler: old il2cpp-based memoryprofiler for Unity5/2017.
 
 If you are using Unity2018,
 - Copy com.unity.memoryprofiler into your Unity2018 project's **Assets/StandardAssets/** folder. Empty project is also fine.
+- com.unity.memoryprofiler requires com.unity.editorcoroutines package, you can either install it from **Menu/Window/Package Manager**, or copy the editorcoroutines package in this repo into your **Assets/StandardAssets/**.
 - That's it! Connect your device, capture and profile!
 
 
 If you are using Unity5 or Unity2017,
 - Copy com.unity.memoryprofiler into your Unity2018 project's **Assets/StandardAssets/** folder. Empty project is also fine.
+- com.unity.memoryprofiler requires com.unity.editorcoroutines package, you can either install it from **Menu/Window/Package Manager**, or copy the editorcoroutines package in this repo into your **Assets/StandardAssets/**.
 - You should copy BitbucketMemoryProfiler into your Unity5/2017 project as well. Empty project is also fine.
 - Open BitbucketMemoryProfiler panel in your Unity5/2017 project, in order to save your time, make sure **Enable Crawl** to be toggle off!
 - Connect your device, capture and save your device memory snapshot **.memsnap3** file

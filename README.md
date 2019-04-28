@@ -27,14 +27,14 @@ This com.unity.memoryprofiler and BitbucketMemoryProfiler is modified to fit thi
 
 
 当下（2019年4月），在以iOS设备为例的真机上进行Unity内存占用分析，主要有4种Profile方法：
-- XCode Memory Graph + Malloc Stack
+- XCode Memory Graph(Malloc Stack), Instruments Allocation
 - Unity Built-in Memory Profiler（所有Unity）
 - Unity Bitbucket Memory Profiler（Unity 5.3 ~ Unity 2017.4）
 - Unity New Memory Profiler v2（Unity 2018）
 
 它们有自己的优缺点，分析如下。
 
-### XCode Memory Graph + Malloc Stack
+### XCode Memory Graph(Malloc Stack), Instruments Allocation
 XCode Memory Graph<sup>[1]</sup>在开启Malloc Stack选项的情况下，抓取到的memgraph文件，配合`vmmap`、`malloc_history`等命令，可以提供非常详细的操作系统Native级别、Metal图形驱动级别的内存分配信息。
 下面是抓取结果示例，
 
@@ -58,8 +58,10 @@ XCode Memory Graph<sup>[1]</sup>在开启Malloc Stack选项的情况下，抓取
 |C#反射信息TABLE的扩容|8MB+6MB+6MB|
 |IOKit/ConstantBuffer/ScratchBuffer|4MB+4MB+4MB+4mb|
 
+Instruments的Allocation则提供基于Timeline的类似Native级别的Heap和Virtual Memory的内存分配。
 
-但从上面的XCode抓取Memory Graph可以看出，其提供的信息都是操作系统Native级别、Metal图形驱动级别的内存分配，
+但XCode的Memory Graph、Instruments的Allocation提供的信息都是操作系统Native级别、Metal图形驱动级别的内存分配，其适用于分析整体分配情况、分析Unity的Native分配情况、和非Unity（比如一些插件等）的Native分配情况。
+
 但Unity一般是申请了大块Native内存后，自行在里面进行内存管理，其对于Native内存来说是黑盒。
 所以，XCode抓取Memory Graph粒度太粗，如能有精确逻辑意义的Unity object level的信息（C# object、engine object如texture data object等），将事半功倍。
 

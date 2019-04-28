@@ -12,7 +12,7 @@ If you are using Unity2018,
 
 
 If you are using Unity5 or Unity2017,
-- Copy com.unity.memoryprofiler into your Unity2018 project. Empty project is also fine.
+- Copy com.unity.memoryprofiler into your Unity2018 project's **Assets/StandardAssets/** folder. Empty project is also fine.
 - You should copy BitbucketMemoryProfiler into your Unity5/2017 project as well. Empty project is also fine.
 - Open BitbucketMemoryProfiler panel in your Unity5/2017 project, in order to save your time, make sure **Enable Crawl** to be toggle off!
 - Connect your device, capture and save your device memory snapshot **.memsnap3** file

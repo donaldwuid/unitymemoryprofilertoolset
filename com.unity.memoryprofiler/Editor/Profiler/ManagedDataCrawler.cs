@@ -699,7 +699,19 @@ namespace Unity.MemoryProfiler.Editor
                 }
                 else
                 {
-                    dataStack.CrawlDataStack.Push(new StackCrawlData() { ptr = arrayData.ReadPointer(), ptrFrom = data.ptr, typeFrom = obj.ITypeDescription, indexOfFrom = obj.ManagedObjectIndex, fieldFrom = -1, fromArrayIndex = i });
+                    ulong readPtr = 0;
+                    try
+                    {
+                        readPtr = arrayData.ReadPointer();
+                    }
+                    catch (Exception ex)
+                    {
+                        var typeName = typeDescriptions.typeDescriptionName[obj.ITypeDescription];
+                        Debug.Log("invalid obj (ManagedObjectIndex=" + obj.ManagedObjectIndex + ",NativeObjectIndex=" + obj.NativeObjectIndex +
+                            ",PtrObject=" + obj.PtrObject + ",PtrTypeInfo=" + obj.PtrTypeInfo + ",RefCount=" + obj.RefCount + ",Size=" + obj.Size +
+                            ",type=" + typeName + ") due to exception, arrayData.bytes.Length=" + arrayData.bytes.Length + ",arrayData.offset=" + arrayData.offset);
+                    }
+                    dataStack.CrawlDataStack.Push(new StackCrawlData() { ptr = readPtr, ptrFrom = data.ptr, typeFrom = obj.ITypeDescription, indexOfFrom = obj.ManagedObjectIndex, fieldFrom = -1, fromArrayIndex = i });
                     arrayData = arrayData.NextPointer();
                 }
             }

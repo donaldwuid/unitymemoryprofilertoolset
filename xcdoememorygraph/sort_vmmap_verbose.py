@@ -77,7 +77,14 @@ def sort_vmmap_verbose(filepath, sizeColumns):
     print("sorted and write to file: " + newFilePath)
 
 def main():
-    sort_vmmap_verbose(sys.argv[1], sys.argv[2:])
+    if len(sys.argv) >= 3:
+        sort_vmmap_verbose(sys.argv[1], sys.argv[2:])
+    else:
+        print(
+            "usage: python3 sort_vmmap_verbose.py {vmmap_verbose_output_text_file_path} {memory_type_colume_1_to_sum_up} {memory_type_colume_2_to_sum_up} ...")
+        print("example: ")
+        print("python3 sort_vmmap_verbose.py my/path/to/vmmap_verbose_output_text_file.txt 3 4")
+        print("DIRTY memory type colume is 3, SWAP memory type colume is 4, so this will sort the input file based on the sum = DIRTY + SWAP, and output the file with file name in \"..._sorted.txt\"")
         
 
 if __name__== "__main__":

@@ -62,6 +62,23 @@ namespace Unity.MemoryProfiler.Editor.UI.Treemap
 
         public void OnGUI(Rect r)
         {
+            const float lableHeight = 20.0f;
+            Rect labelRect = r;
+            labelRect.height = lableHeight;
+            GUI.BeginGroup(labelRect);
+
+            long totalSize = 0;
+            long totalCount = 0;
+            foreach (var group in _groups.Values)
+            {
+                totalSize += group.totalValue;
+                totalCount += group._items.Count;
+            }
+            GUI.Label(labelRect, "Total Size:" + EditorUtility.FormatBytes((long)totalSize) + ", Total Count:" + totalCount);
+            GUI.EndGroup();
+
+            r.yMin += lableHeight;
+
             if (r != m_ZoomArea.m_ViewSpace)
             {
                 m_ZoomArea.resizeView(r);

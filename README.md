@@ -56,11 +56,13 @@ XCode Memory Graph<sup>[1]</sup>在开启Malloc Stack选项的情况下，抓取
 |wwise加载Bank|11.5MB+2.34MB+2MB|
 |CmdQ的初始化|8.1MB|
 |C#反射信息TABLE的扩容|8MB+6MB+6MB|
-|IOKit/ConstantBuffer/ScratchBuffer|4MB+4MB+4MB+4mb|
+|IOKit/ConstantBuffer/ScratchBuffer|4MB+4MB+4MB+4MB|
 
-Instruments的Allocation则提供基于Timeline的类似Native级别的Heap和Virtual Memory的内存分配。
+Instruments的Allocation则提供基于Timeline的类似Native级别的Heap和Virtual Memory的内存分配。通过Instruments的Invert Call Tree，也能从另外的角度去看哪些公用的底层逻辑分配的累计内存比较多。 
 
-但XCode的Memory Graph、Instruments的Allocation提供的信息都是操作系统Native级别、Metal图形驱动级别的内存分配，其适用于分析整体分配情况、分析Unity的Native分配情况、和非Unity（比如一些插件等）的Native分配情况。
+因此，XCode的Memory Graph、Instruments的Allocation适用于分析整体分配情况、分析Unity的Native分配情况、和非Unity（比如一些插件等）、各线程的Native分配情况。
+
+另外，WWDC 2019新发布的XCode11 + iOS13或iPadOS13，能看到Metal/IOKit内部的详细分配情况<sup>[4]</sup>。
 
 但Unity一般是申请了大块Native内存后，自行在里面进行内存管理，其对于Native内存来说是黑盒。
 所以，XCode抓取Memory Graph粒度太粗，如能有精确逻辑意义的Unity object level的信息（C# object、engine object如texture data object等），将事半功倍。
@@ -94,3 +96,5 @@ Unity New Memory Profiler V2是Unity 2018新的Memory Profiler，其增量地进
 [2] Unity, *"MemoryProfiler"*, 2017. Available: https://bitbucket.org/Unity-Technologies/memoryprofiler
 
 [3] Unity, *"New Memory Profiler preview package available for Unity 2018.3"*, 2018. Available: https://forum.unity.com/threads/new-memory-profiler-preview-package-available-for-unity-2018-3.597271/
+
+[4] WWDC, *"Delivering Optimized Metal Apps and Games"*, 2019. Available: https://developer.apple.com/videos/play/wwdc2019/606/

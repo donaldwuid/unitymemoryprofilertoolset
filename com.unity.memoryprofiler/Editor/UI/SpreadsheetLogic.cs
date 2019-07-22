@@ -205,6 +205,12 @@ namespace Unity.MemoryProfiler.Editor.UI
             return i;
         }
 
+        public void Save()
+        {
+
+        }
+
+
         public void OnGUI(Rect r)
         {
             GUI.BeginGroup(r);

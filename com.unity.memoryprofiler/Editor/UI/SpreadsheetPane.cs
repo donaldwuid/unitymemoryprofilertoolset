@@ -239,6 +239,12 @@ namespace Unity.MemoryProfiler.Editor.UI
                 GUILayout.BeginArea(r);
                 EditorGUILayout.BeginVertical();
                 EditorGUILayout.BeginHorizontal();
+
+                if (GUILayout.Button("Save Spreadsheet"))
+                {
+                    m_Spreadsheet.Save();
+                }
+
                 GUILayout.Label("Filters:");
 
                 m_Spreadsheet.OnGui_Filters();

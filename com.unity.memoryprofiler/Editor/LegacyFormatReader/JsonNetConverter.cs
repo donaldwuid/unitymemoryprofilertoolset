@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System;
 using Unity.MemoryProfiler.Editor.Extensions.String;
 
 namespace Unity.MemoryProfiler.Editor.Legacy
@@ -59,7 +60,11 @@ namespace Unity.MemoryProfiler.Editor.Legacy
 
         public string Convert(string newtonsoftJsonFormat)
         {
-            StringBuilder builder = new StringBuilder(newtonsoftJsonFormat.Length * 2);
+            int originalLength = newtonsoftJsonFormat.Length;
+            int doubleLength = originalLength * 2;
+            if(doubleLength < 0)
+                doubleLength = originalLength;
+            StringBuilder builder = new StringBuilder(doubleLength);
 
             string result = ConvertByteArrayToJsonUtilSerialization(builder, newtonsoftJsonFormat, k_BytesToken);
             builder.Remove(0, builder.Length);

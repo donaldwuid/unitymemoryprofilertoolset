@@ -84,7 +84,7 @@ namespace Unity.MemoryProfiler.Editor
         const string k_SnapshotFileNamePart = "Snapshot-";
         const string k_SnapshotTempFileName = "temp.tmpsnap";
         internal const string k_SnapshotFileExtension = ".snap";
-        internal const string k_ConvertedSnapshotTempFileName = "ConvertedSnaphot.tmpsnap";
+        internal const string k_ConvertedSnapshotTempFileName = "-Converted.tmpsnap";
         const string k_ViewFileExtension = "xml";
         const string k_RawCategoryName = "Raw";
         const string k_DiffRawCategoryName = "Diff Raw";
@@ -910,11 +910,13 @@ namespace Unity.MemoryProfiler.Editor
                 float initalProgress = 0.15f;
                 ProgressBarDisplay.UpdateProgress(initalProgress, "Reading legacy format file.");
                 var oldSnapshot = m_LegacyReader.ReadFromFile(path);
-                targetPath = Path.Combine(Application.temporaryCachePath, k_ConvertedSnapshotTempFileName);
+                var oldSnapshotFileInfo = new FileInfo(path);
+                var oldSnapshotFileName = Path.GetFileNameWithoutExtension(path);
+                targetPath = Path.Combine(Application.temporaryCachePath, oldSnapshotFileName + k_ConvertedSnapshotTempFileName);
 
                 ProgressBarDisplay.UpdateProgress(0.25f, "Converting to current snapshot format.");
 
-                var conversion = LegacyPackedMemorySnapshotConverter.Convert(oldSnapshot, targetPath);
+                var conversion = LegacyPackedMemorySnapshotConverter.Convert(oldSnapshot, targetPath, oldSnapshotFileInfo.CreationTimeUtc);
                 conversion.MoveNext(); //start execution
 
                 if (conversion.Current == null)

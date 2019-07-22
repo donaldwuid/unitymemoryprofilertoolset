@@ -97,12 +97,19 @@ namespace Unity.MemoryProfiler.Editor
                     }
                     catch(IOException e)
                     {
-                        Debug.LogError("Failed to load snapshot, error: " + e.Message);
+                        Debug.LogError("Failed to load snapshot " + fInfo.FullName + ", error: " + e.Message);
                     }
                 }
             }
+
+            m_Snapshots.Sort(SortSnapshotFileData);
         }
-        
+
+        private static int SortSnapshotFileData(SnapshotFileData a, SnapshotFileData b)
+        {
+            return a.FileInfo.LastWriteTime.CompareTo(b.FileInfo.LastWriteTime);
+        }
+
         public void RenameSnapshot(SnapshotFileData snapshot, string name)
         {
             int nameStart = snapshot.FileInfo.FullName.LastIndexOf(snapshot.FileInfo.Name);

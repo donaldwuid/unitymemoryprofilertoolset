@@ -13,6 +13,11 @@ namespace Unity.MemoryProfiler.Editor.Legacy.LegacyFormats
 
         public static IEnumerator Convert(LegacyPackedMemorySnapshot snapshot, string writePath)
         {
+            return Convert(snapshot, writePath, DateTime.UtcNow);
+        }
+
+        public static IEnumerator Convert(LegacyPackedMemorySnapshot snapshot, string writePath, DateTime fileDateTime)
+        {
             if (snapshot == null)
             {
                 Debug.LogError("Parameter 'snapshot' was null.");
@@ -40,7 +45,7 @@ namespace Unity.MemoryProfiler.Editor.Legacy.LegacyFormats
             writer.WriteEntry(EntryType.Metadata_Version, kCurrentVersion);
 
             //timestamp with conversion date
-            writer.WriteEntry(EntryType.Metadata_RecordDate, (ulong)DateTime.Now.Ticks);
+            writer.WriteEntry(EntryType.Metadata_RecordDate, (ulong)fileDateTime.Ticks);
 
             //prepare metadata
             string platform = "Unknown";
